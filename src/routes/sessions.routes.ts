@@ -2,8 +2,11 @@ import { hash } from 'bcryptjs';
 import { Router } from 'express';
 
 import AuthenticateUserService from '../services/Session/AuthenticateUserService'
+import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const sessionsRouter = Router();
+
+sessionsRouter.use(ensureAuthentication);
 
 sessionsRouter.post('/', async (request, response) => {
     try {

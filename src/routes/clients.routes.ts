@@ -3,8 +3,11 @@ import { getCustomRepository } from 'typeorm';
 
 import ClientsRepository from '../repositories/ClientsRepository';
 import CreateClientService from '../services/Clients/CreateClientService';
+import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const clientsRouter = Router();
+
+clientsRouter.use(ensureAuthentication);
 
 clientsRouter.get('/', async (request, response) => {
     const clientsRepository = getCustomRepository(ClientsRepository);

@@ -3,8 +3,11 @@ import { getCustomRepository } from 'typeorm';
 
 import VehiclesRepository from '../repositories/VehiclesRepository'
 import CreateVehicleService from '../services/Vehicles/CreateVehicleService'
+import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const vehiclesRouter = Router();
+
+vehiclesRouter.use(ensureAuthentication);
 
 vehiclesRouter.get('/', async (request, response) => {
     const vehiclesRepository = getCustomRepository(VehiclesRepository);

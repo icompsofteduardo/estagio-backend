@@ -3,8 +3,11 @@ import { getCustomRepository } from 'typeorm';
 
 import RentsRepository from '../repositories/RentsRepository'
 import CreateRentService from '../services/Rents/CreateRentService';
+import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const rentsRouter = Router();
+
+rentsRouter.use(ensureAuthentication);
 
 rentsRouter.get('/', async (request, response) => {
     const rentsRepository = getCustomRepository(RentsRepository);
@@ -20,7 +23,7 @@ rentsRouter.get('/:id', async (request, response) => {
 
 rentsRouter.post('/', async (request, response) => {
     try {
-        const { client, vehicle, startDate, finalDate, finalValue, situation } = request.body
+        const { client, vehicle, startDate, finalDate, finalValue, situation, operator } = request.body
 
         const createRent = new CreateRentService();
 
@@ -30,7 +33,8 @@ rentsRouter.post('/', async (request, response) => {
             startDate,
             finalDate,
             finalValue,
-            situation
+            situation,
+            operator
         })
 
         return response.json(rent)
@@ -39,21 +43,4 @@ rentsRouter.post('/', async (request, response) => {
     }
 });
 
-/*
-app.post('/product', async (req, res) => {
-    await repository.save(req.body)
-    res.end()
-})
-
-app.put('/product', async (req, res) => {
-    await repository.update(req.body)
-    res.end()
-})
-
-app.delete('/product/:productId', async (req, res) => {
-    let productId = req.params.productId
-    await repository.delete(productId)
-    res.end()
-})
-*/
 export default rentsRouter;

@@ -1,7 +1,8 @@
 import { getRepository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
+
 import User from '../../models/User';
-import { fromString } from 'uuidv4';
+import authConfig from '../../config/auth'
 
 interface Request {
     email: string;
@@ -30,7 +31,14 @@ class AuthenticateUserService {
             throw new Error('Email ou senha não são validos.');
         }
 
-        const token = sign({}, '08b3eac5597d23508cbe2ca5d32170cb', { subject: user.id.toString(), expiresIn: '1d' });
+        const { secret, expiresIn } = authConfig.jwt;
+
+        const token = sign({},
+            secret,
+            {
+                subject: user.id.toString(),
+                expiresIn: expiresIn
+            });
 
         return { user, token };
     }
