@@ -4,19 +4,25 @@ import Client from '../../models/Client';
 import ClientsRepository from '../../repositories/ClientsRepository';
 
 interface Request {
-    name: string,
+    first_name: string,
+    last_name: string,
     age: number,
-    driverLicense: string 
+    address: string,
+    email: string,
+    driver_license: string
 }
 
 class CreateClientService {
-    public async execute({ name, age, driverLicense }: Request): Promise<Client> {
+    public async execute({ first_name, last_name, age, address, email, driver_license }: Request): Promise<Client> {
         const clientsRepository = getCustomRepository(ClientsRepository)
 
         const client = clientsRepository.create({
-            name,
+            first_name,
+            last_name,
             age,
-            driverLicense
+            address,
+            email,
+            driver_license
         });
 
         await clientsRepository.save(client)

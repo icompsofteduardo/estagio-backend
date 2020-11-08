@@ -13,9 +13,15 @@ export class CreateClients1602436433882 implements MigrationInterface {
                         type: 'int',
                         isPrimary: true
                     }, {
-                        name: 'name',
+                        name: 'first_name',
                         type: 'varchar',
                     }, {
+                        name: 'last_name',
+                        type: 'varchar',
+                    }, {
+                        name: 'address',
+                        type: 'varchar',
+                    },{
                         name: 'age',
                         type: 'int',
                     }, {

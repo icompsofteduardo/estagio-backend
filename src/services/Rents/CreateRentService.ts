@@ -9,23 +9,23 @@ import RentsRepository from '../../repositories/RentsRepository';
 interface Request {
     client: Client,
     vehicle: Vehicle,
-    startDate: Date,
-    finalDate: Date,
-    finalValue: number,
+    start_date: Date,
+    final_date: Date,
+    final_value: number,
     situation: boolean,
     operator: User
 }
 
 class CreateRentService {
-    public async execute({ client, vehicle, startDate, finalDate, finalValue, situation, operator }: Request): Promise<Rent> {
+    public async execute({ client, vehicle, start_date, final_date, final_value, situation, operator }: Request): Promise<Rent> {
         const rentsRepository = getCustomRepository(RentsRepository)
 
         const rent = rentsRepository.create({
             client,
             vehicle,
-            startDate,
-            finalDate,
-            finalValue,
+            start_date,
+            final_date,
+            final_value,
             situation,
             operator
         });

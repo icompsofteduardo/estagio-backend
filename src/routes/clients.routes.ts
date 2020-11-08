@@ -17,14 +17,17 @@ clientsRouter.get('/', async (request, response) => {
 
 clientsRouter.post('/', async (request, response) => {
     try {
-        const { name, age, driverLicense } = request.body
+        const { first_name, last_name, age, address, email, driver_license } = request.body
 
         const createClient = new CreateClientService();
 
         const client = await createClient.execute({
-            name,
+            first_name,
+            last_name,
             age,
-            driverLicense
+            address,
+            email,
+            driver_license
         })
 
         return response.json(client)

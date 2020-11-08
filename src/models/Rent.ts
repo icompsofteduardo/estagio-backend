@@ -22,13 +22,13 @@ class Rent {
     operator: User;
 
     @Column()
-    startDate: Date;
+    start_date: Date;
 
     @Column()
-    finalDate: Date;
+    final_date: Date;
 
     @Column('double')
-    finalValue: number;
+    final_value: number;
 
     @Column()
     situation: boolean;

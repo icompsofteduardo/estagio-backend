@@ -7,13 +7,22 @@ class Client {
     id: number;
 
     @Column()
-    name: string;
+    first_name: string;
+
+    @Column()
+    last_name: string;
 
     @Column()
     age: number;
 
     @Column()
-    driverLicense: string;
+    address: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    driver_license: string;
 
     @CreateDateColumn()
     created_at: Date;

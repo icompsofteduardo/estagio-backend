@@ -16,7 +16,7 @@ class Vehicle {
     plate: string;
 
     @Column()
-    dailyValue: number;
+    daily_value: number;
 
     @Column()
     situation: boolean;
