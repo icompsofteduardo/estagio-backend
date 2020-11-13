@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateVehicles1602446249373 implements MigrationInterface {
+export class CreateVehicles1605230683856 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -11,22 +11,22 @@ export class CreateVehicles1602446249373 implements MigrationInterface {
                     {
                         name: 'id',
                         type: 'int',
-                        isPrimary: true,
+                        isPrimary: true
                     }, {
                         name: 'model',
-                        type: 'varchar',
+                        type: 'varchar'
                     }, {
                         name: 'brand',
-                        type: 'varchar',
+                        type: 'varchar'
                     }, {
                         name: 'plate',
-                        type: 'varchar',
+                        type: 'varchar'
                     }, {
                         name: 'daily_value',
-                        type: 'numeric',
+                        type: 'numeric'
                     }, {
                         name: 'situation',
-                        type: 'boolean',
+                        type: 'boolean'
                     }, {
                         name: 'created_at',
                         type: 'timestamp',
@@ -45,5 +45,4 @@ export class CreateVehicles1602446249373 implements MigrationInterface {
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable('vehicles');
     }
-
 }

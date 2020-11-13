@@ -10,21 +10,21 @@ interface Request {
     client: Client,
     vehicle: Vehicle,
     start_date: Date,
-    final_date: Date,
+    end_date: Date,
     final_value: number,
     situation: boolean,
     operator: User
 }
 
 class CreateRentService {
-    public async execute({ client, vehicle, start_date, final_date, final_value, situation, operator }: Request): Promise<Rent> {
+    public async execute({ client, vehicle, start_date, end_date, final_value, situation, operator }: Request): Promise<Rent> {
         const rentsRepository = getCustomRepository(RentsRepository)
 
         const rent = rentsRepository.create({
             client,
             vehicle,
             start_date,
-            final_date,
+            end_date,
             final_value,
             situation,
             operator

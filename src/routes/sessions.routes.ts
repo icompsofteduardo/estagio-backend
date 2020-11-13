@@ -6,8 +6,6 @@ import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const sessionsRouter = Router();
 
-sessionsRouter.use(ensureAuthentication);
-
 sessionsRouter.post('/', async (request, response) => {
     try {
         const { email, password } = request.body;

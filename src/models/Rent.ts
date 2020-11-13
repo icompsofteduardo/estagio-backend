@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import Vehicle from '../models/Vehicle'
-import Client from '../models/Client'
+import Vehicle from './Vehicle';
+import Client from './Client';
 import User from './User';
 
 
@@ -10,24 +10,24 @@ class Rent {
     id: number;
 
     @ManyToOne(type => Client, client => client.id)
-    @JoinColumn()
+    @JoinColumn({ name: "client" })
     client: Client;
 
     @ManyToOne(type => Vehicle, vehicle => vehicle.id)
-    @JoinColumn()
+    @JoinColumn({ name: "vehicle" })
     vehicle: Vehicle;
 
     @ManyToOne(type => User, operator => operator.id)
-    @JoinColumn()
+    @JoinColumn({ name: "operator" })
     operator: User;
 
     @Column()
     start_date: Date;
 
     @Column()
-    final_date: Date;
+    end_date: Date;
 
-    @Column('double')
+    @Column()
     final_value: number;
 
     @Column()

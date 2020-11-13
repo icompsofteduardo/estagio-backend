@@ -7,19 +7,19 @@ interface Request {
     model: string,
     brand: string,
     plate: string,
-    dailyValue: number,
+    daily_value: number,
     situation: boolean
 }
 
 class CreateVehiclesService {
-    public async execute({ model, brand, plate, dailyValue, situation }: Request): Promise<Vehicle> {
+    public async execute({ model, brand, plate, daily_value, situation }: Request): Promise<Vehicle> {
         const vehiclesRepository = getCustomRepository(VehiclesRepository)
 
         const vehicle = vehiclesRepository.create({
             model,
             brand,
             plate,
-            dailyValue,
+            daily_value,
             situation
         });
 
