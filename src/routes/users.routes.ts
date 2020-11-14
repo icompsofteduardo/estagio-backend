@@ -4,6 +4,7 @@ import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const usersRouter = Router();
 
+usersRouter.use(ensureAuthentication);
 
 usersRouter.post('/', async (request, response) => {
     try {
