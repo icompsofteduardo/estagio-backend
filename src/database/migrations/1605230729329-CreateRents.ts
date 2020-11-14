@@ -46,33 +46,9 @@ export class CreateRents1605230729329 implements MigrationInterface {
                 ]
             })
         );
-
-        await queryRunner.createForeignKey("rents", new TableForeignKey({
-            columnNames: ["client"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "clients",
-            onDelete: "CASCADE"
-        }));
-
-        await queryRunner.createForeignKey("rents", new TableForeignKey({
-            columnNames: ["vehicle"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "vehicles",
-            onDelete: "CASCADE"
-        }));
-
-        await queryRunner.createForeignKey("rents", new TableForeignKey({
-            columnNames: ["operator"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "users",
-            onDelete: "CASCADE"
-        }));
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query("ALTER TABLE rents DROP FOREIGN KEY `FK_2782b1728a8275052722dd536ac`")
-        await queryRunner.query("ALTER TABLE rents DROP FOREIGN KEY `FK_c6e4a9ed267e3869218ee50544f`")
-        await queryRunner.query("ALTER TABLE rents DROP FOREIGN KEY `FK_d871b057c46267743920daba20f`")
         await queryRunner.dropTable('rents');
     }
 }
