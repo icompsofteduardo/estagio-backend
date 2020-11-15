@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
 export class CreateRents1605230729329 implements MigrationInterface {
@@ -11,28 +11,30 @@ export class CreateRents1605230729329 implements MigrationInterface {
                     {
                         name: 'id',
                         type: 'int',
-                        isPrimary: true,
+                        isPrimary: true
                     }, {
                         name: 'client',
-                        type: 'int',
+                        type: 'int'
                     }, {
                         name: 'vehicle',
-                        type: 'int',
+                        type: 'int'
                     }, {
                         name: 'start_date',
-                        type: 'date',
+                        type: 'date'
                     }, {
                         name: 'end_date',
-                        type: 'date',
+                        type: 'date'
                     }, {
                         name: 'final_value',
-                        type: 'numeric',
+                        type: 'numeric'
                     }, {
                         name: 'situation',
                         type: 'boolean',
+                        default: 1
                     }, {
                         name: 'operator',
                         type: 'int',
+                        default: 1
                     }, {
                         name: 'created_at',
                         type: 'timestamp',

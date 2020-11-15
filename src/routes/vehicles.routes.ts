@@ -7,7 +7,6 @@ import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const vehiclesRouter = Router();
 
-vehiclesRouter.use(ensureAuthentication);
 
 vehiclesRouter.get('/', async (request, response) => {
     const vehiclesRepository = getCustomRepository(VehiclesRepository);
