@@ -7,6 +7,7 @@ import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const clientsRouter = Router();
 
+clientsRouter.use(ensureAuthentication);
 
 clientsRouter.get('/', async (request, response) => {
     const clientsRepository = getCustomRepository(ClientsRepository);

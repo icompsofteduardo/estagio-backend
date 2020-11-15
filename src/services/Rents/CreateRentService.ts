@@ -1,25 +1,14 @@
 import { getCustomRepository } from 'typeorm';
-import Client from '../../models/Client';
 
 import Rent from '../../models/Rent';
-import User from '../../models/User';
-import Vehicle from '../../models/Vehicle';
+
 import RentsRepository from '../../repositories/RentsRepository';
 
-interface Request {
-    client: Client,
-    vehicle: Vehicle,
-    start_date: Date,
-    end_date: Date,
-    final_value: number,
-    situation: boolean,
-    operator: User
-}
-
 class CreateRentService {
-    public async execute({ client, vehicle, start_date, end_date, final_value, situation, operator }: Request): Promise<Rent> {
+    public async execute({ client, vehicle, start_date, end_date, final_value, situation, operator }: any): Promise<Rent> {
         const rentsRepository = getCustomRepository(RentsRepository)
-
+        situation = true;
+        operator = 1;
         const rent = rentsRepository.create({
             client,
             vehicle,

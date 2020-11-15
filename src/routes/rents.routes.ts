@@ -36,7 +36,7 @@ rentsRouter.post('/', async (request, response) => {
             situation,
             operator
         })
-
+        rent.situation = true;
         return response.json(rent)
     } catch (error) {
         return response.status(400).json({ error: error.message });

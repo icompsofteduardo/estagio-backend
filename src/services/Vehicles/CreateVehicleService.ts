@@ -23,6 +23,7 @@ class CreateVehiclesService {
             situation
         });
 
+        vehicle.situation = true;
         await vehiclesRepository.save(vehicle)
 
         return vehicle;
