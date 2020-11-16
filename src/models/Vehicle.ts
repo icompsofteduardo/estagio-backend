@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('vehicles')
-class Vehicle {
+export default class Vehicle {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -15,8 +15,8 @@ class Vehicle {
     @Column()
     plate: string;
 
-    @Column()
-    daily_value: number;
+    @Column({ name: "daily_value" })
+    dailyValue: number;
 
     @Column()
     situation: boolean;
@@ -29,5 +29,3 @@ class Vehicle {
 
     //photos
 }
-
-export default Vehicle;

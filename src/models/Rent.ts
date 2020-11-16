@@ -5,7 +5,7 @@ import User from './User';
 
 
 @Entity('rents')
-class Rent {
+export default class Rent {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -21,14 +21,14 @@ class Rent {
     @JoinColumn({ name: "operator" })
     operator: User;
 
-    @Column()
-    start_date: Date;
+    @Column({ name: "start_date" })
+    startDate: Date;
 
-    @Column()
-    end_date: Date;
+    @Column({ name: "end_date" })
+    endDate: Date;
 
-    @Column()
-    final_value: number;
+    @Column({ name: "final_value" })
+    finalValue: number;
 
     @Column()
     situation: boolean;
@@ -39,5 +39,3 @@ class Rent {
     @UpdateDateColumn()
     updated_at: Date;
 }
-
-export default Rent;

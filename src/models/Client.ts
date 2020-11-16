@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('clients')
-class Client {
+export default class Client {
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    first_name: string;
+    @Column({ name: "last_name" })
+    firstName: string;
 
-    @Column()
-    last_name: string;
+    @Column({ name: "first_name" })
+    lastName: string;
 
     @Column()
     age: number;
@@ -21,8 +21,8 @@ class Client {
     @Column()
     email: string;
 
-    @Column()
-    driver_license: string;
+    @Column({ name: "driver_license" })
+    driverLicense: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -32,5 +32,3 @@ class Client {
 
     //photo
 }
-
-export default Client;
