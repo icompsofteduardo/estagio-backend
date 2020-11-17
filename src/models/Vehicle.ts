@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm';
 
 @Entity('vehicles')
 export default class Vehicle {
@@ -21,11 +27,11 @@ export default class Vehicle {
     @Column()
     situation: boolean;
 
-    @CreateDateColumn()
-    created_at: Date;
+    @CreateDateColumn({ name: "created_at" })
+    createdAt: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @UpdateDateColumn({ name: "updated_at" })
+    updatedAt: Date;
 
     //photos
 }

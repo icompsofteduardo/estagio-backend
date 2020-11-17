@@ -4,19 +4,30 @@ import Rent from '../../models/Rent';
 
 import RentsRepository from '../../repositories/RentsRepository';
 
+interface IRequest {
+    client: number;
+    vehicle: number;
+    startDate: Date;
+    endDate: Date;
+    finalValue: number;
+    situation: boolean;
+    operator: number;
+}
+
 class CreateRentService {
-    public async execute({ client, vehicle, start_date, end_date, final_value, situation, operator }: any): Promise<Rent> {
+    public async execute({ client, vehicle, startDate, endDate, finalValue, situation, operator }: IRequest): Promise<Rent> {
         const rentsRepository = getCustomRepository(RentsRepository)
         situation = true;
         operator = 1;
+        
         const rent = rentsRepository.create({
             client,
             vehicle,
-            start_date,
-            end_date,
-            final_value,
+            startDate,
+            endDate,
+            finalValue,
             situation,
-            operator
+            operator,
         });
 
         await rentsRepository.save(rent)

@@ -3,23 +3,23 @@ import { getCustomRepository } from 'typeorm';
 import Vehicle from '../../models/Vehicle';
 import VehiclesRepository from '../../repositories/VehiclesRepository';
 
-interface Request {
-    model: string,
-    brand: string,
-    plate: string,
-    daily_value: number,
-    situation: boolean
+interface IRequest {
+    model: string;
+    brand: string;
+    plate: string;
+    dailyValue: number;
+    situation: boolean;
 }
 
 class CreateVehiclesService {
-    public async execute({ model, brand, plate, daily_value, situation }: Request): Promise<Vehicle> {
+    public async execute({ model, brand, plate, dailyValue, situation }: IRequest): Promise<Vehicle> {
         const vehiclesRepository = getCustomRepository(VehiclesRepository)
 
         const vehicle = vehiclesRepository.create({
             model,
             brand,
             plate,
-            daily_value,
+            dailyValue,
             situation
         });
 

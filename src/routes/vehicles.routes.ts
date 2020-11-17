@@ -23,7 +23,7 @@ vehiclesRouter.get('/:id', async (request, response) => {
 
 vehiclesRouter.post('/', async (request, response) => {
     try {
-        const { model, brand, plate, daily_value, situation } = request.body
+        const { model, brand, plate, dailyValue, situation } = request.body
 
         const createVehicle = new CreateVehicleService();
 
@@ -31,7 +31,7 @@ vehiclesRouter.post('/', async (request, response) => {
             model,
             brand,
             plate,
-            daily_value,
+            dailyValue,
             situation
         })
 

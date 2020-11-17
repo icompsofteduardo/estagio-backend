@@ -1,8 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    JoinColumn,
+    ManyToOne,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm';
+
 import Vehicle from './Vehicle';
 import Client from './Client';
 import User from './User';
-
 
 @Entity('rents')
 export default class Rent {
@@ -33,9 +41,9 @@ export default class Rent {
     @Column()
     situation: boolean;
 
-    @CreateDateColumn()
-    created_at: Date;
+    @CreateDateColumn({ name: "created_at" })
+    createdAt: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @UpdateDateColumn({ name: "updated_at" })
+    updatedAt: Date;
 }

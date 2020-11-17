@@ -23,16 +23,16 @@ rentsRouter.get('/:id', async (request, response) => {
 
 rentsRouter.post('/', async (request, response) => {
     try {
-        const { client, vehicle, start_date, end_date, final_value, situation, operator } = request.body
+        const { client, vehicle, startDate, endDate, finalValue, situation, operator } = request.body
 
         const createRent = new CreateRentService();
 
         const rent = await createRent.execute({
             client,
             vehicle,
-            start_date,
-            end_date,
-            final_value,
+            startDate,
+            endDate,
+            finalValue,
             situation,
             operator
         })

@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm';
 
 @Entity('clients')
 export default class Client {
@@ -24,11 +30,11 @@ export default class Client {
     @Column({ name: "driver_license" })
     driverLicense: string;
 
-    @CreateDateColumn()
-    created_at: Date;
+    @CreateDateColumn({ name: "created_at" })
+    createdAt: Date;
 
-    @UpdateDateColumn()
-    updated_at: Date;
+    @UpdateDateColumn({ name: "updated_at" })
+    updatedAt: Date;
 
     //photo
 }
