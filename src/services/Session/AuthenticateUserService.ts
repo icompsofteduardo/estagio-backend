@@ -1,34 +1,35 @@
-import { getRepository } from 'typeorm';
-import { sign } from 'jsonwebtoken';
+import { getRepository } from "typeorm";
+import { compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
 
-import User from '../../models/User';
-import authConfig from '../../config/auth'
+import authConfig from "../../config/auth";
 
-interface Request {
+import User from "../../models/User";
+
+interface IRequest {
     email: string;
     password: string;
 }
 
-interface Response {
+interface IResponse {
     user: User;
     token: string;
 }
 
 class AuthenticateUserService {
-    public async execute({ email, password }: Request): Promise<Response> {
+    public async execute({ email, password }: IRequest): Promise<IResponse> {
         const usersRepository = getRepository(User)
 
         const user = await usersRepository.findOne({ where: { email } });
 
         if (!user) {
-            throw new Error('Email ou senha não são validos.');
+            throw new Error("Email ou senha não são válidos.");
         }
 
-        let passwordMatched = false;
-        if (password === user.password) {
-            passwordMatched = true;
-        } else {
-            throw new Error('Email ou senha não são validos.');
+        const passwordMatched = await compare(password, user.password);
+
+        if (!passwordMatched) {
+            throw new Error("Email ou senha não são válidos.");
         }
 
         const { secret, expiresIn } = authConfig.jwt;
