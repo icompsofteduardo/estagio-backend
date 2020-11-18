@@ -1,7 +1,8 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateClients1605230611211 implements MigrationInterface {
+export class CreateClients1605742388389 implements MigrationInterface {
+
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
@@ -30,6 +31,9 @@ export class CreateClients1605230611211 implements MigrationInterface {
                         name: 'driver_license',
                         type: 'varchar'
                     }, {
+                        name: 'photo',
+                        type: 'int'
+                    }, {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()'
@@ -38,7 +42,15 @@ export class CreateClients1605230611211 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()'
                     }
-                    // photo
+                ], foreignKeys: [
+                    {
+                        name: 'ForeignPhoto',
+                        columnNames: ['photo'],
+                        referencedTableName: 'photos',
+                        referencedColumnNames: ['id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE'
+                    }
                 ]
             })
         );

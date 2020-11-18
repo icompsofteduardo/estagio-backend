@@ -3,8 +3,10 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    ManyToOne
 } from 'typeorm';
+import Rent from './Rent';
 
 @Entity('photos')
 export default class Photo {
@@ -14,6 +16,9 @@ export default class Photo {
 
     @Column()
     ref: string;
+
+    @ManyToOne(type => Rent, rent => rent.photos)
+    rent: Rent;
 
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date;

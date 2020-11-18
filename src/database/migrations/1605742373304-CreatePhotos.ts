@@ -1,27 +1,24 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateUsers1605230708418 implements MigrationInterface {
+export class CreatePhotos1605742373304 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "users",
+                name: "photos",
                 columns: [
                     {
                         name: 'id',
                         type: 'int',
                         isPrimary: true
                     }, {
-                        name: 'name',
+                        name: 'reference',
                         type: 'varchar'
                     }, {
-                        name: 'email',
-                        type: 'varchar',
-                        isUnique: true
-                    }, {
-                        name: 'password',
-                        type: 'varchar'
+                        name: 'rent',
+                        type: 'int',
+                        isNullable: true
                     }, {
                         name: 'created_at',
                         type: 'timestamp',
@@ -31,13 +28,21 @@ export class CreateUsers1605230708418 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()'
                     }
-                    // photo
+                ], foreignKeys: [
+                    {
+                        name: 'ForeignRent',
+                        columnNames: ['rent'],
+                        referencedTableName: 'rents',
+                        referencedColumnNames: ['id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE'
+                    }
                 ]
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('users');
+        await queryRunner.dropTable('photos');
     }
 }

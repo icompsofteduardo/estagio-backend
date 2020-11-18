@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateVehicles1605230683856 implements MigrationInterface {
+export class CreateVehicles1605742393020 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -36,7 +36,6 @@ export class CreateVehicles1605230683856 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()'
                     }
-                    // photos
                 ]
             })
         );

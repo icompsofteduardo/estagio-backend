@@ -4,6 +4,7 @@ import {
     Column,
     JoinColumn,
     ManyToOne,
+    OneToMany,
     CreateDateColumn,
     UpdateDateColumn
 } from 'typeorm';
@@ -11,6 +12,7 @@ import {
 import Vehicle from './Vehicle';
 import Client from './Client';
 import User from './User';
+import Photo from './Photos';
 
 @Entity('rents')
 export default class Rent {
@@ -28,6 +30,9 @@ export default class Rent {
     @ManyToOne(type => User, operator => operator.id)
     @JoinColumn({ name: "operator" })
     operator: User;
+
+    @OneToMany(type => Photo, photo => photo.rent)
+    photos: Photo[];
 
     @Column({ name: "start_date" })
     startDate: Date;

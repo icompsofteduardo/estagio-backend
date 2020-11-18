@@ -1,40 +1,27 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateRents1605230729329 implements MigrationInterface {
+export class CreateUsers1605742424201 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "rents",
+                name: "users",
                 columns: [
                     {
                         name: 'id',
                         type: 'int',
                         isPrimary: true
                     }, {
-                        name: 'client',
-                        type: 'int'
+                        name: 'name',
+                        type: 'varchar'
                     }, {
-                        name: 'vehicle',
-                        type: 'int'
+                        name: 'email',
+                        type: 'varchar',
+                        isUnique: true
                     }, {
-                        name: 'start_date',
-                        type: 'date'
-                    }, {
-                        name: 'end_date',
-                        type: 'date'
-                    }, {
-                        name: 'final_value',
-                        type: 'numeric'
-                    }, {
-                        name: 'situation',
-                        type: 'boolean',
-                        default: 1
-                    }, {
-                        name: 'operator',
-                        type: 'int',
-                        default: 1
+                        name: 'password',
+                        type: 'varchar'
                     }, {
                         name: 'created_at',
                         type: 'timestamp',
@@ -44,13 +31,12 @@ export class CreateRents1605230729329 implements MigrationInterface {
                         type: 'timestamp',
                         default: 'now()'
                     }
-                    // photos
                 ]
             })
         );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('rents');
+        await queryRunner.dropTable('users');
     }
 }
