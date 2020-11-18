@@ -3,27 +3,17 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne,
-    JoinColumn
+    UpdateDateColumn
 } from 'typeorm';
 
-import Photo from './Photos';
-
-@Entity('users')
-export default class User {
+@Entity('photos')
+export default class Photo {
 
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    name: string;
-
-    @Column()
-    email: string;
-
-    @Column()
-    password: string;
+    ref: string;
 
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date;

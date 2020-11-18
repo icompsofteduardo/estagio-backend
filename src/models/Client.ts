@@ -3,8 +3,11 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     CreateDateColumn,
-    UpdateDateColumn
+    UpdateDateColumn,
+    OneToOne,
+    JoinColumn
 } from 'typeorm';
+import Photo from './Photos';
 
 @Entity('clients')
 export default class Client {
@@ -30,11 +33,13 @@ export default class Client {
     @Column({ name: "driver_license" })
     driverLicense: string;
 
+    @OneToOne(() => Photo)
+    @JoinColumn()
+    photo: Photo;
+
     @CreateDateColumn({ name: "created_at" })
     createdAt: Date;
 
     @UpdateDateColumn({ name: "updated_at" })
     updatedAt: Date;
-
-    //photo
 }
