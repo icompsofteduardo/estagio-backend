@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateRents1605742426121 implements MigrationInterface {
+export class CreateRents1605745809562 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -61,7 +61,7 @@ export class CreateRents1605742426121 implements MigrationInterface {
                         onUpdate: 'CASCADE'
                     }, {
                         name: 'ForeignUser',
-                        columnNames: ['user'],
+                        columnNames: ['operator'],
                         referencedTableName: 'users',
                         referencedColumnNames: ['id'],
                         onDelete: 'CASCADE',

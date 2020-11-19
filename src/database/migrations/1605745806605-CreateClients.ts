@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreateClients1605742388389 implements MigrationInterface {
+export class CreateClients1605745806605 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(

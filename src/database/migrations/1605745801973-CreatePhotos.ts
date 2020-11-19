@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 import { Table } from "typeorm/schema-builder/table/Table";
 
-export class CreatePhotos1605742373304 implements MigrationInterface {
+export class CreatePhotos1605745801973 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -27,15 +27,6 @@ export class CreatePhotos1605742373304 implements MigrationInterface {
                         name: 'updated_at',
                         type: 'timestamp',
                         default: 'now()'
-                    }
-                ], foreignKeys: [
-                    {
-                        name: 'ForeignRent',
-                        columnNames: ['rent'],
-                        referencedTableName: 'rents',
-                        referencedColumnNames: ['id'],
-                        onDelete: 'CASCADE',
-                        onUpdate: 'CASCADE'
                     }
                 ]
             })
