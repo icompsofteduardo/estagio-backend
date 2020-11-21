@@ -1,39 +1,40 @@
-import { Request, Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from "express";
+import { verify } from "jsonwebtoken";
 
-import authConfig from '../config/auth'
+import auth from "../config/auth";
 
 interface TokenPayload {
     iat: number;
-    exp: number;
-    sub: string;
+    ext: number;
+    subject: string;
 }
 
 export default function ensureAuthenticated(
     request: Request,
     response: Response,
-    next: NextFunction
+    next: NextFunction,
 ): void {
+    const authHeader = request.headers.authorization;
 
-    const authReader = request.headers.authorization;
-
-    if (!authReader) {
-        throw new Error("Token JWT não existe");
+    if (!authHeader) {
+        throw new Error("JWT token não existe.");
     }
 
-    const [, token] = authReader.split(' ');
+    const [, token] = authHeader.split(" ");
+
+    const authSecret = auth.jwt.secret
 
     try {
-        const decodedToken = verify(token, authConfig.jwt.secret);
+        const decoded = verify(token, authSecret);
 
-        const { sub } = decodedToken as TokenPayload;
+        const { subject } = decoded as TokenPayload;
 
         request.user = {
-            id: sub,
-        }
+            id: subject,
+        };
 
         return next();
-    } catch {
-        throw new Error('Token JWT inválido');
+    } catch (err) {
+        throw new Error("JWT token inválido");
     }
 }

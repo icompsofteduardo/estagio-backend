@@ -14,7 +14,7 @@ interface IRequest {
 
 class CreateClientService {
     public async execute({ firstName, lastName, age, address, email, driverLicense }: IRequest): Promise<Client> {
-        const clientsRepository = getCustomRepository(ClientsRepository)
+        const clientsRepository = getCustomRepository(ClientsRepository);
 
         const client = clientsRepository.create({
             firstName,
@@ -26,7 +26,6 @@ class CreateClientService {
         });
 
         await clientsRepository.save(client)
-
         return client;
     }
 }

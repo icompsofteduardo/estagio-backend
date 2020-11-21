@@ -3,25 +3,25 @@ import { getCustomRepository } from 'typeorm';
 
 import VehiclesRepository from '../repositories/VehiclesRepository'
 import CreateVehicleService from '../services/Vehicles/CreateVehicleService'
-import ensureAuthentication from '../middlewares/ensureAuthenticated';
+//import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const vehiclesRouter = Router();
 
-vehiclesRouter.use(ensureAuthentication);
+//vehiclesRouter.use(ensureAuthentication);
 
-vehiclesRouter.get('/', async (request, response) => {
+vehiclesRouter.get('/vehicles', async (request, response) => {
     const vehiclesRepository = getCustomRepository(VehiclesRepository);
     const vehicles = await vehiclesRepository.find();
     return response.json(vehicles)
 });
 
-vehiclesRouter.get('/:id', async (request, response) => {
+vehiclesRouter.get('/vehicles/:id', async (request, response) => {
     const vehiclesRepository = getCustomRepository(VehiclesRepository);
     const vehicles = await vehiclesRepository.findOne(request.params.id)
     return response.json(vehicles)
 });
 
-vehiclesRouter.post('/', async (request, response) => {
+vehiclesRouter.post('/vehicle', async (request, response) => {
     try {
         const { model, brand, plate, dailyValue, situation } = request.body
 

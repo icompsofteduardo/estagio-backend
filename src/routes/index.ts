@@ -8,10 +8,10 @@ import sessionsRouter from './sessions.routes';
 
 const routes = Router();
 
-routes.use('/vehicles', vehiclesRouter);
-routes.use('/clients', clientsRouter);
-routes.use('/rents', rentsRouter);
-routes.use('/users', usersRouter);
-routes.use('/sessions', sessionsRouter)
+routes.use('/', vehiclesRouter);
+routes.use('/', clientsRouter);
+routes.use('/', rentsRouter);
+routes.use('/', usersRouter);
+routes.use('/', sessionsRouter)
 
 export default routes;

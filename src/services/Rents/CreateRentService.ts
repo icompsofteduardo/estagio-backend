@@ -12,10 +12,11 @@ interface IRequest {
     finalValue: number;
     situation: boolean;
     operator: number;
+    photos: [];
 }
 
 class CreateRentService {
-    public async execute({ client, vehicle, startDate, endDate, finalValue, situation, operator }: IRequest): Promise<Rent> {
+    public async execute({ client, vehicle, startDate, endDate, finalValue, situation, operator, photos }: IRequest): Promise<Rent> {
         const rentsRepository = getCustomRepository(RentsRepository)
         situation = true;
         operator = 1;
@@ -23,11 +24,12 @@ class CreateRentService {
         const rent = rentsRepository.create({
             client,
             vehicle,
+            operator,
+            photos,
             startDate,
             endDate,
             finalValue,
-            situation,
-            operator,
+            situation
         });
 
         await rentsRepository.save(rent)

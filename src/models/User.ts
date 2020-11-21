@@ -3,12 +3,8 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     CreateDateColumn,
-    UpdateDateColumn,
-    OneToOne,
-    JoinColumn
+    UpdateDateColumn
 } from 'typeorm';
-
-import Photo from './Photos';
 
 @Entity('users')
 export default class User {

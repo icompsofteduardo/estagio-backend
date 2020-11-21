@@ -2,7 +2,7 @@ import { getRepository } from "typeorm";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-import authConfig from "../../config/auth";
+import auth from "../../config/auth";
 
 import User from "../../models/User";
 
@@ -18,30 +18,36 @@ interface IResponse {
 
 class AuthenticateUserService {
     public async execute({ email, password }: IRequest): Promise<IResponse> {
-        const usersRepository = getRepository(User)
+        const usersRepository = getRepository(User);
 
-        const user = await usersRepository.findOne({ where: { email } });
+        const user = await usersRepository.findOne({
+            where: { email }
+        });
 
         if (!user) {
-            throw new Error("Email ou senha não são válidos.");
+            throw new Error("E-mail ou senha incorretos.");
         }
 
         const passwordMatched = await compare(password, user.password);
 
         if (!passwordMatched) {
-            throw new Error("Email ou senha não são válidos.");
+            throw new Error("E-mail ou senha incorretos.");
         }
 
-        const { secret, expiresIn } = authConfig.jwt;
+        const { secret, expiresIn } = auth.jwt;
 
         const token = sign({},
             secret,
             {
                 subject: user.id.toString(),
                 expiresIn: expiresIn
-            });
+            }
+        );
 
-        return { user, token };
+        return {
+            user,
+            token
+        };
     }
 }
 

@@ -3,19 +3,19 @@ import { getCustomRepository } from 'typeorm';
 
 import ClientsRepository from '../repositories/ClientsRepository';
 import CreateClientService from '../services/Clients/CreateClientService';
-import ensureAuthentication from '../middlewares/ensureAuthenticated';
+//import ensureAuthentication from '../middlewares/ensureAuthenticated';
 
 const clientsRouter = Router();
 
-clientsRouter.use(ensureAuthentication);
+//clientsRouter.use(ensureAuthentication);
 
-clientsRouter.get('/', async (request, response) => {
+clientsRouter.get('/clients', async (request, response) => {
     const clientsRepository = getCustomRepository(ClientsRepository);
     const clients = await clientsRepository.find();
     return response.json(clients)
 });
 
-clientsRouter.post('/', async (request, response) => {
+clientsRouter.post('/client', async (request, response) => {
     try {
         const { firstName, lastName, age, address, email, driverLicense } = request.body
 
@@ -34,14 +34,6 @@ clientsRouter.post('/', async (request, response) => {
     } catch (error) {
         return response.status(400).json({ error: error.message });
     }
-});
-
-clientsRouter.put('/:id', (request, response) => {
-    //
-});
-
-clientsRouter.post('/:id', (request, response) => {
-    //
 });
 
 export default clientsRouter;
